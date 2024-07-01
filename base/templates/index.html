@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} portfolio {% endblock title %}
+
+{% block content %}
+
+<!-- Add your site or app content here -->
+ 
+ <div class="container">
+   <div class="row">
+     <div class="col-xs-12">
+
+        <div class="card">
+          <div class="card-block">
+            <h2>About me</h2>
+            <div class="row">
+              <div class="col-md-4">
+                <p><img src= "/base/media/{{profile.picture}}" class="img-responsive img-circle img-thumbnail" alt=""></p>
+              </div>
+              <div class="col-md-8">
+                <p> {{profile.about}} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h2>Projects</h2>
+            <div class="row">
+              {% for project in project %}
+              <div class="col-md-4">
+                <img src="/base/media/{{project.picture}}" class="img-responsive" alt="profile picture"/>
+                <h3 class="h5">{{project.title}}</h3>
+                <p>{{project.date | date:"Y"}}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h2>Work</h2>
+            {% for work in work %}
+            <div class="work-experience">
+              <small class="date">{{work.start_date | date:"M Y" }} - {{work.end_date | date:"M Y"}}</small>
+              <h3 class="h5 date-title">{{work.position}} - <a href="{{work.web_url}}" title="Create professionnal website">{{work.company}}</a></h3>
+              <p> {{work.description}} </p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+
+        <div class="card">
+          <div class="card-block">
+            <h2>Education</h2>
+            <div class="row">
+              {% for education in education %}  
+              <div class="col-md-4">  
+                <div class="education-experience">
+                  <small class="date">{{education.start_date | date:"Y"}}-{{education.end_date | date:"Y"}}</small>
+                  <h3 class="h5 date-title">{{education.title}}</h3>
+                  <p>{{education.institute}}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h2>Certifications</h2>
+            <div class="row">
+              {% for certification in certification %}  
+              <div class="col-md-4">  
+                <div class="education-experience">
+                  <small class="date">{{certification.date | date:"Y"}}</small>
+                  <h3 class="h5 date-title">{{certification.title}}</h3>
+                  <p>{{certification.institute}}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-block">
+            <h2>Language</h2>
+            <div class="row">
+              {% for language in language %}
+              <div class="col-md-4">
+                <div class="language-experience">
+                  <h3 class="h5"> {{language.language}}  <small> {{language.proficiency}} </small></h3>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="card">
+          <div class="card-block">
+            <h2>Social Network</h2>
+            <div class="row">
+              {% for social in social %}
+              <div class="col-md-3">
+                <p class="social-buttons"><a href="{{social.url}}" title=""><span class="social-round-icon fa-icon"><i class="fa fa-{{social.platform}}"></i></span>{{social.username}}</a></p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h2>Contact</h2>
+            <form method="post" class="reveal-content">
+              {% csrf_token %}
+              <div class="form-group">  
+                {% comment %} {{contact_form.as_p}} {% endcomment %}
+                <input type="email" class="form-control" name="email" placeholder="Email">
+              </div>  
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" placeholder="Subject">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="5" name="message" placeholder="Enter your message"></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class=" btn btn-primary">Send message</button>
+              </div> 
+            </form>
+          </div>
+        </div>
+     </div>
+   </div>
+ </div>
+
+</main>
+{% endblock content %}
+
+

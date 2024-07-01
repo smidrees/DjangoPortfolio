@@ -1,0 +1,33 @@
+{% include "header.html" %}
+
+<div class="card">
+    <div class="card-block">
+      <h2 class="card-title">Messages</h2>
+      <form method="get" action="{% url 'messages' %}">
+        <input type="text" name="q" placeholder="Search by Email">
+        <button type="submit">Search</button>
+      </form>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Email</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in contact_data %}
+            <tr class="table-warning">
+              <td>{{ data.email }}</td>
+              <td>{{ data.subject }}</td>
+              <td>{{ data.message }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+{% include "footer.html" %}

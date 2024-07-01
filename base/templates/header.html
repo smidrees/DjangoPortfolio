@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="description" name="description">
+    <meta name="google" content="notranslate" />
+    <meta content="Mashup templates have been developped by Orson.io team" name="author">
+  
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-icon-180x180.png' %}">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  
+    <title>{% block title %} {% endblock title %}</title>  
+  
+  <link href="{% static 'css/main.d8e0d294.css' %}" rel="stylesheet"></head>
+
+<body>
+    <!-- Add your content of header -->
+    <div class="background-color-layer" style="background-image: url('/base/media/{{profile.picture}}')"></div>
+
+    <main class="content-wrapper">
+        <header class="white-text-container section-container">
+          
+          <div class="text-center">
+            <h1>I am {{ profile.name }} </h1>
+            <p>{{ profile.title }}</p> 
+            <p>
+              {% for social in social %}
+              <a class="fa-icon fa-icon-2x" href="{{social.url}}" title="">
+                <i class="fa fa-{{social.platform}}"></i>
+              </a>
+              {% endfor %}
+            </p>
+          </div>
+        </header>
